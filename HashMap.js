@@ -4,7 +4,7 @@ class HashMap {
         this.loadFactor = loadFactor;
         this.capacity = capacity;
         this.hashList = [];
-        for (let i = 0; i < capacity; ++i) {
+        for (let i = 0; i < this.capacity; ++i) {
             this.hashList[i] = new LinkedList();
         }
     }
@@ -19,17 +19,31 @@ class HashMap {
         return hashCode;
     }
     set(key, value) {
+        if (this.length() === Math.floor(this.loadFactor * this.capacity)) {
+            const entriesArray = this.entries();
+            entriesArray.push([key, value]);
+            this.clear();
+            this.capacity *= 2;
+            for (let i = 0; i < this.capacity; ++i) {
+                this.hashList[i] = new LinkedList();
+            }
+            for (let [key, value] of entriesArray) {
+                this.set(key, value);
+            }
+        }
         const index = this.hash(key);
         let indexOfKey = -1;
         let nodeValueObject = {};
         nodeValueObject[key] = `${value}`;
-        for (let i = 0; i < this.hashList[index].size(); ++i) {
-            const propertyNames = Object.keys(this.hashList[index].at(i).nodeValue);
-            if (propertyNames[0] === key) {
-                this.hashList[index].removeAt(i);
-                this.hashList[index].insertAt(nodeValueObject, i);
-                indexOfKey = i;
-                break;
+        if (this.length() != 0) {
+            for (let i = 0; i < this.hashList[index].size(); ++i) {
+                const propertyNames = Object.keys(this.hashList[index].at(i).nodeValue);
+                if (propertyNames[0] === key) {
+                    this.hashList[index].removeAt(i);
+                    this.hashList[index].insertAt(nodeValueObject, i);
+                    indexOfKey = i;
+                    break;
+                }
             }
         }
         if (indexOfKey === -1) {

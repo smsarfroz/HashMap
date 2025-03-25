@@ -35,3 +35,36 @@ console.log(test.entries());
 
 test.set('jacket','golden');
 console.log(test.length());
+
+test.set('moon', 'silver')
+console.log(test.length());
+console.log(test.capacity);
+console.log(test.entries());
+
+console.log(test);
+
+test.set('kite', 'pink');
+console.log(test.length());
+
+test.set('carrot', 'orang');
+console.log(test.length());
+
+console.log(test.get('carrot'));
+console.log(test.has('kite'));
+
+test.remove('lion');
+console.log(test.entries());
+
+console.log(test.length());
+console.log(test.keys());
+console.log(test.values());
+console.log(test.entries());
+
+test.clear();
+console.log(test.entries());
+console.log(test.length());
+console.log(test.get('lion'));
+console.log(test.keys());
+console.log(test.values());
+console.log(test.has('hat'));
+console.log(test.remove('hat'));
