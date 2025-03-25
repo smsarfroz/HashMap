@@ -15,6 +15,7 @@ test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
 
+/*
 console.log(test);
 console.log(test.get('grape'));
 console.log(test.has('ice cream'));
@@ -30,3 +31,7 @@ console.log(test.keys());
 console.log(test.values());
 
 console.log(test.entries());
+*/
+
+test.set('jacket','golden');
+console.log(test.length());

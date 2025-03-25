@@ -20,7 +20,7 @@ class HashMap {
     }
     set(key, value) {
         const index = this.hash(key);
-        const indexOfKey = -1;
+        let indexOfKey = -1;
         let nodeValueObject = {};
         nodeValueObject[key] = `${value}`;
         for (let i = 0; i < this.hashList[index].size(); ++i) {
