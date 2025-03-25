@@ -112,9 +112,7 @@ class HashMap {
             for (let j = 0; j < this.hashList[i].size(); ++j) {
                 const propertyNames = Object.keys(this.hashList[i].at(j).nodeValue);
                 const key = propertyNames[0];
-                const entry = {};
-                entry[key] = this.hashList[i].at(j).nodeValue[key];
-                entriesArray.push(entry);
+                entriesArray.push([key, this.hashList[i].at(j).nodeValue[key]]);
             }
         }
         return entriesArray;
