@@ -68,14 +68,16 @@ class LinkedList {
         let next = this.head.nextNode;
 
         if (next == null) {
-            this.head = null;
+            this.head = new Node();
             return;
         }
         while (next.nextNode != null) {
             cur = next;
             next = cur.nextNode;
         }
+        cur.nodeValue = null;
         cur.nextNode = null;
+        this.tail = null;
     }
     contains(value) {
         for (let i = 0; i < this.size(); ++i) {
@@ -126,7 +128,12 @@ class LinkedList {
             return;
         }
         if (index == 0) {
-            this.head = this.at(1);
+            if (this.size() === 1) {
+                this.head = null;
+                this.tail = null;
+            } else {
+                this.head = this.at(1);
+            }
         } else if (index == this.size()-1) {
             this.tail = this.at(index-1);
             this.tail.nextNode = null;

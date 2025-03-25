@@ -47,6 +47,78 @@ class HashMap {
         }
         return null;
     }
+    has(key) {
+        for (let i = 0; i < this.hashList.length; ++i) {
+            for (let j = 0; j < this.hashList[i].size(); ++j) {
+                const propertyNames = Object.keys(this.hashList[i].at(j).nodeValue);
+                if (propertyNames[0] == key) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    remove(key) {
+        for (let i = 0; i < this.hashList.length; ++i) {
+            for (let j = 0; j < this.hashList[i].size(); ++j) {
+                const propertyNames = Object.keys(this.hashList[i].at(j).nodeValue);
+                if (propertyNames[0] == key) {
+                    this.hashList[i].removeAt(j);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    length() {
+        let numberOfKeys = 0;
+        for (let i = 0; i < this.hashList.length; ++i) {
+            numberOfKeys += this.hashList[i].size();
+        }
+        return numberOfKeys;
+    }
+    clear() {
+        for (let i = 0; i < this.hashList.length; ++i) {
+            while (this.hashList[i].size() != 0) {
+                this.hashList[i].pop();
+            }
+        }
+        console.log("length now is", this.length());
+    }
+    keys() {
+        const keyArray = [];
+        for (let i = 0; i < this.hashList.length; ++i) {
+            for (let j = 0; j < this.hashList[i].size(); ++j) {
+                const propertyNames = Object.keys(this.hashList[i].at(j).nodeValue);
+                keyArray.push(propertyNames[0]);
+            }
+        }
+        return keyArray
+    }
+    values() {
+        const valuesArray = [];
+        for (let i = 0; i < this.hashList.length; ++i) {
+            for (let j = 0; j < this.hashList[i].size(); ++j) {
+                const propertyNames = Object.keys(this.hashList[i].at(j).nodeValue);
+                const key = propertyNames[0];
+                valuesArray.push(this.hashList[i].at(j).nodeValue[key]);
+            }
+        }
+        return valuesArray;
+    }
+    entries() {
+        const entriesArray = [];
+        for (let i = 0; i < this.hashList.length; ++i) {
+            for (let j = 0; j < this.hashList[i].size(); ++j) {
+                const propertyNames = Object.keys(this.hashList[i].at(j).nodeValue);
+                const key = propertyNames[0];
+                const entry = {};
+                entry[key] = this.hashList[i].at(j).nodeValue[key];
+                entriesArray.push(entry);
+            }
+        }
+        return entriesArray;
+    }
 }
 
 export { HashMap };
